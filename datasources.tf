@@ -41,22 +41,3 @@ data "oci_core_subnets" "subnets" {
   #Optional
   display_name = each.value["subnet"]
 }
-
-
-data "oci_identity_compartments" "network_cmp_cluster" {
-  for_each = var.node_pool
-  #Required
-  compartment_id = var.tenancy_ocid
-
-  #Optional
-  name = var.network_cmp
-}
-
-data "oci_core_subnets" "subnet_cluster" {
-  for_each = var.node_pool
-  #Required
-  compartment_id = data.oci_identity_compartments.network_cmp_cluster.compartments[0].id
-
-  #Optional
-  display_name = var.subnet
-}

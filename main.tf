@@ -30,7 +30,7 @@ resource "oci_containerengine_cluster" "main" {
   endpoint_config {
 
     #Optional
-    subnet_id = data.oci_core_subnets.subnet_cluster.subnets[0].id
+    subnet_id = var.subnet_id
   }
 
   options {

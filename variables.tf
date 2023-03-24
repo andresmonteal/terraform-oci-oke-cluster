@@ -23,8 +23,8 @@ variable "vcn_id" {
   type        = string
 }
 
-variable "subnet" {
-  description = "(Required) The OCID of the subnet which the API would use."
+variable "subnet_id" {
+  description = "(Optional) The OCID of the regional subnet in which to place the Cluster endpoint."
   type        = string
 }
 
