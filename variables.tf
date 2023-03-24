@@ -23,6 +23,11 @@ variable "vcn_id" {
   type        = string
 }
 
+variable "subnet" {
+  description = "(Required) The OCID of the subnet which the API would use."
+  type        = string
+}
+
 # optional
 variable "freeform_tags" {
   description = "(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace."

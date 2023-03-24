@@ -26,6 +26,13 @@ resource "oci_containerengine_cluster" "main" {
     }
   }
 
+  #Optional
+  endpoint_config {
+
+    #Optional
+    subnet_id = data.oci_core_subnets.subnet_cluster.subnets[0].id
+  }
+
   options {
 
     #Optional
