@@ -3,8 +3,40 @@ variable "tenancy_ocid" {
   type        = string
 }
 
-variable "compartment_id" {
-  description = "(Required) The OCID of the compartment in which to create the cluster."
+#compartments
+variable "oke_cmp" {
+  description = "Compartment name for oke resource"
+  type        = string
+}
+
+variable "oke_cmp_id" {
+  description = "Compartment id for oke resource"
+  type        = string
+  default     = null
+}
+
+variable "network_cmp" {
+  description = "Compartment name for networking resources"
+  type        = string
+  default     = null
+}
+
+variable "network_cmp_id" {
+  description = "Compartment id for networking resources"
+  type        = string
+  default     = null
+}
+
+#oke variables
+variable "api_subnet_name" {
+  description = "API virtual cloud network subnet name"
+  default     = ""
+  type        = string
+}
+
+variable "lb_subnet_name" {
+  description = "Load Balancer virtual cloud network subnet name"
+  default     = ""
   type        = string
 }
 
@@ -15,16 +47,6 @@ variable "cluster_kubernetes_version" {
 
 variable "cluster_name" {
   description = "(Required) (Updatable) The name of the cluster. Avoid entering confidential information."
-  type        = string
-}
-
-variable "vcn_id" {
-  description = "(Required) The OCID of the virtual cloud network (VCN) in which to create the cluster."
-  type        = string
-}
-
-variable "subnet_id" {
-  description = "(Optional) The OCID of the regional subnet in which to place the Cluster endpoint."
   type        = string
 }
 

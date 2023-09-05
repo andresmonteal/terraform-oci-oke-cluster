@@ -1,18 +1,23 @@
-module "oci-oke" {
-  source = "git::ssh://devops.scmservice.us-ashburn-1.oci.oraclecloud.com/namespaces/id9de6bj2yv6/projects/claro-devops/repositories/terraform-oci-oke-cluster?ref=v0.1.4"
+module "oke_cluster" {
+  source = "../"
 
   for_each = var.oke_clusters
 
-  tenancy_ocid               = var.tenancy_ocid
-  compartment_id             = data.oci_identity_compartments.cmp_lvl3[each.key].compartments[0].id
+  # general oci parameters
+  tenancy_ocid  = var.tenancy_ocid
+  oke_cmp       = each.value["oke_cmp"]
+  freeform_tags = lookup(each.value, "freeform_tags", null)
+  defined_tags  = lookup(each.value, "defined_tags", null)
+
+  # compute instance parameters
   cluster_kubernetes_version = each.value["kubernetes_version"]
   cluster_name               = each.key
-  vcn_id                     = data.oci_core_vcns.vcns[each.key].virtual_networks[0].id
-  subnet_id                  = data.oci_core_subnets.subnet_cluster[each.key].subnets[0].id
 
-  defined_tags  = lookup(each.value, "defined_tags", {})
-  freeform_tags = lookup(each.value, "freeform_tags", {})
+  # networking parameters
+  api_subnet_name = each.value["api_subnet_name"]
+  lb_subnet_name  = each.value["lb_subnet_name"]
+  network_cmp     = each.value["network_cmp"]
 
+  # node pool
   node_pool = lookup(each.value, "node_pool", {})
-
 }
