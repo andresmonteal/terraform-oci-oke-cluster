@@ -98,9 +98,3 @@ variable "lb_subnet_ids" {
   type        = list(string)
   default     = []
 }
-
-variable "node_pool" {
-  description = "(Optional) provides the Node Pool resource in Oracle Cloud Infrastructure Container Engine service."
-  type        = map(any)
-  default     = {}
-}
