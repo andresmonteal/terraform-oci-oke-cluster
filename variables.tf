@@ -98,3 +98,9 @@ variable "lb_subnet_ids" {
   type        = list(string)
   default     = []
 }
+
+variable "cluster_type" {
+  description = "(Optional) (Updatable) Type of cluster"
+  type        = string
+  default     = "basic"
+}

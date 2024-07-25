@@ -5,6 +5,7 @@ resource "oci_containerengine_cluster" "main" {
   kubernetes_version = var.cluster_kubernetes_version
   name               = var.cluster_name
   vcn_id             = local.api_vcn_id
+  type               = var.cluster_type
 
   defined_tags  = var.defined_tags
   freeform_tags = local.merged_freeform_tags
